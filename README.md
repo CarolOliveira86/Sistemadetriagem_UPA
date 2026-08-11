@@ -1,0 +1,1 @@
+# Sistemadetriagem_UPA
