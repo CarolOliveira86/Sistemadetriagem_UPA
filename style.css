@@ -1,0 +1,292 @@
+:root {
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --primary: #007356;
+  --primary-hover: #0a9396;
+  --text-main: #2b2d42;
+  --text-muted: #6c757d;
+  --border-color: #e9ecef;
+
+  /* Protocolo de Manchester */
+  --urgency-red: #d90429;
+  --urgency-orange: #f77f00;
+  --urgency-yellow: #ffd166;
+  --urgency-green: #06d6a0;
+  --urgency-blue: #118ab2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Cabeçalho */
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  color: var(--primary);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nurse-info {
+  font-size: 0.9rem;
+  color: #e0f2f1;
+}
+
+/* Layout Principal */
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bg-color);
+}
+
+/* Form Visuals */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input,
+select,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Seleção de Nível de Urgência */
+.urgency-selector {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.urgency-option {
+  position: relative;
+}
+
+.urgency-option input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.urgency-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  opacity: 0.5;
+  transition:
+    opacity 0.2s,
+    transform 0.1s;
+}
+
+.urgency-option input:checked + .urgency-label {
+  opacity: 1;
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.u-red {
+  background-color: var(--urgency-red);
+}
+.u-orange {
+  background-color: var(--urgency-orange);
+}
+.u-yellow {
+  background-color: var(--urgency-yellow);
+  color: #333;
+}
+.u-green {
+  background-color: var(--urgency-green);
+  color: #333;
+}
+.u-blue {
+  background-color: var(--urgency-blue);
+}
+
+/* Botão de Envio */
+.btn-submit {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Fila de Espera (Coluna Lateral) */
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.queue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  border-left: 5px solid transparent;
+}
+
+.queue-item.red {
+  border-left-color: var(--urgency-red);
+}
+.queue-item.orange {
+  border-left-color: var(--urgency-orange);
+}
+.queue-item.yellow {
+  border-left-color: var(--urgency-yellow);
+}
+.queue-item.green {
+  border-left-color: var(--urgency-green);
+}
+
+.patient-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.patient-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.badge-red {
+  background-color: #fde8e8;
+  color: var(--urgency-red);
+}
+.badge-orange {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+.badge-yellow {
+  background-color: #fffde7;
+  color: #f57f17;
+}
+.badge-green {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .urgency-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
